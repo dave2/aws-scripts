@@ -1,8 +1,9 @@
-aws-snap
-========
+# aws-snap
 
 These two scripts maintain an instance-initated backup rotation, similar
 to a traditional tape backup cycle.
+
+## Implementation
 
 A rotation has a label, and has a number of historical copies. The number
 is passed on runtime, and therefore can be different for each rotation.
@@ -20,6 +21,8 @@ The handling of rotations is done by tagging snaps with two critical tags:
 It will only ever touch snaps for volumes currently attached. If you 
 detach a volume, it will *not* remove any snaps of the removed volume.
 
+## Example deployment
+
 Example of usage using cron:
 
 ```
@@ -30,6 +33,8 @@ Example of usage using cron:
 # cherry pick last weekly into a monthly on 1st, keep forever
 20 2 1 * * root /path/to/aws-snap-promote.sh weekly monthly -1
 ```
+
+## IAM Permissions
 
 The scripts need specific permissions in EC2 to function. These can be
 provided any means that AWS CLI tools accept. This can be either using
@@ -61,4 +66,7 @@ A policy for access typically looks like:
 }
 ```
 
+## Dependancies
 
+- AWS CLI, distro versions are often out of date so the version from `pip install aws-cli` is preferred
+- jq >= 1.4
