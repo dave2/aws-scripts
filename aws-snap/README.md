@@ -14,7 +14,7 @@ of copies kepted in the target rotation can be culled to a specific number.
 
 The handling of rotations is done by tagging snaps with two critical tags:
 
-- Autoback (which must be true), to idicate this is a snap that we manage
+- Autosnap (which must be true), to indicate this is a snap that we manage
 - BackupRotation containing the name of the rotation to affect
 
 It will only ever touch snaps for volumes currently attached. If you 
